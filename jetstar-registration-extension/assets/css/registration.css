@@ -1,0 +1,1340 @@
+/**
+ * Jetstar API Partner Registration
+ * Complete Professional Design with All Fields
+ * Version: 7.1 - Added Consent & Logo Styling
+ */
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.jetstar-registration-page {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: #f0f4f8;
+    color: #1a202c;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* Hide WordPress elements */
+body.jetstar-registration-page .site-header,
+body.jetstar-registration-page header,
+body.jetstar-registration-page nav,
+body.jetstar-registration-page footer,
+body.jetstar-registration-page #masthead,
+body.jetstar-registration-page #colophon {
+    display: none !important;
+}
+
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
+
+.jetstar-registration-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+}
+
+.jetstar-registration-container {
+    width: 100%;
+    max-width: 1100px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 94vh;
+    max-height: 94vh;
+}
+
+/* ============================================
+   HEADER WITH LOGO & HOME BUTTON
+   ============================================ */
+
+.jetstar-header {
+    background: linear-gradient(135deg, #FF6600 0%, #FF8833 100%);
+    padding: 20px 50px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Home Button */
+.home-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.home-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.home-link svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* Center Content */
+.header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+/* Logo Styling */
+.jetstar-brand-logo {
+    max-height: 60px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.jetstar-logo-text {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin: 0;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: white;
+    margin: 0;
+}
+
+/* Spacer for alignment */
+.header-spacer {
+    width: 120px;
+}
+
+/* ============================================
+   PROGRESS TRACKER
+   ============================================ */
+
+.progress-tracker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 50px;
+    background: #fafbfc;
+    border-bottom: 2px solid #e2e8f0;
+    position: relative;
+    gap: 30px;
+    flex-shrink: 0;
+    overflow-x: auto;
+}
+
+.progress-tracker::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 12%;
+    right: 12%;
+    height: 3px;
+    background: #e2e8f0;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    position: relative;
+    z-index: 1;
+    min-width: 65px;
+}
+
+.step-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border: 3px solid #ffffff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.progress-step span {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    text-align: center;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.progress-step.active .step-circle {
+    background: linear-gradient(135deg, #FF6600 0%, #ff7a1a 100%);
+    color: white;
+    transform: scale(1.15);
+    box-shadow: 0 5px 20px rgba(255, 102, 0, 0.5);
+}
+
+.progress-step.active span {
+    color: #FF6600;
+    font-weight: 700;
+}
+
+.progress-step.completed .step-circle {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.progress-step.completed span {
+    color: #10b981;
+}
+
+.progress-step.hidden {
+    display: none;
+}
+
+/* ============================================
+   FORM CONTENT - SCROLLABLE
+   ============================================ */
+
+.form-content {
+    padding: 32px 60px 20px 60px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+}
+
+/* Custom scrollbar */
+.form-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.form-content::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.form-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.form-content::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ============================================
+   FORM STEPS
+   ============================================ */
+
+.form-step {
+    display: none;
+    animation: fadeIn 0.3s ease;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.form-step.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.step-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 8px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #FF6600;
+}
+
+.step-description {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+/* ============================================
+   FORM SECTIONS
+   ============================================ */
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.section-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #FF6600;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f4f8;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-description {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.optional-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: #94a3b8;
+    background: #f1f5f9;
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+/* ============================================
+   FORM GRID
+   ============================================ */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 30px;
+    margin-bottom: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d3748;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.req {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+.optional {
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+/* ============================================
+   FORM INPUTS
+   ============================================ */
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group input[type="url"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    background: #ffffff;
+    color: #1a202c;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #FF6600;
+    box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-group select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23333' d='M13.293 5.293L8 10.586 2.707 5.293A1 1 0 001.293 6.707l6 6a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 45px;
+    appearance: none;
+}
+
+.form-group select[disabled],
+.form-group input[disabled] {
+    background: #f7fafc !important;
+    cursor: not-allowed !important;
+    opacity: 0.7;
+    border-color: #cbd5e1;
+}
+
+.field-note {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 3px;
+    line-height: 1.3;
+}
+
+.field-note.auto-selected {
+    color: #10b981;
+    font-weight: 600;
+    display: none;
+}
+
+.field-note.auto-selected.show {
+    display: block;
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: #ef4444;
+    background: #fef2f2;
+}
+
+.error-msg {
+    display: none;
+    font-size: 11px;
+    color: #ef4444;
+    font-weight: 600;
+    margin-top: 3px;
+    line-height: 1.3;
+}
+
+.error-msg.active {
+    display: block;
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* ============================================
+   RADIO BUTTONS
+   ============================================ */
+
+.radio-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #ffffff;
+}
+
+.radio-option:hover {
+    border-color: #FF6600;
+    background: #fff7f0;
+}
+
+.radio-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.radio-custom {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-custom {
+    border-color: #FF6600;
+    border-width: 7px;
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-text {
+    color: #FF6600;
+}
+
+.radio-text {
+    flex: 1;
+    font-size: 14px;
+    color: #4a5568;
+    line-height: 1.5;
+}
+
+.radio-text strong {
+    display: block;
+    font-size: 15px;
+    color: #1a202c;
+    margin-bottom: 4px;
+}
+
+/* ============================================
+   CHECKBOXES
+   ============================================ */
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #ffffff;
+}
+
+.checkbox-item:hover {
+    border-color: #FF6600;
+    background: #fff7f0;
+}
+
+.checkbox-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.checkbox-custom {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #cbd5e1;
+    border-radius: 5px;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s ease;
+    background: #ffffff;
+}
+
+.checkbox-item input[type="checkbox"]:checked ~ .checkbox-custom {
+    background: #FF6600;
+    border-color: #FF6600;
+}
+
+.checkbox-item input[type="checkbox"]:checked ~ .checkbox-custom::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-label {
+    font-size: 14px;
+    color: #2d3748;
+    font-weight: 500;
+    flex: 1;
+}
+
+.mandatory-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    color: #ef4444;
+    background: #fee2e2;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 6px;
+}
+
+.checkbox-item.mandatory {
+    border-color: #fed7d7;
+    background: #fffafa;
+}
+
+/* ============================================
+   CONDITIONAL SECTIONS
+   ============================================ */
+
+.conditional-section {
+    display: none;
+    margin-top: 20px;
+    padding: 22px;
+    background: #f7fafc;
+    border-radius: 10px;
+    border-left: 4px solid #FF6600;
+}
+
+.conditional-section.show {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   INFO BOX
+   ============================================ */
+
+.info-box {
+    display: flex;
+    gap: 15px;
+    padding: 16px 20px;
+    background: #fff7f0;
+    border: 2px solid #FFD6B3;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.info-box svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.info-box strong {
+    display: block;
+    color: #FF6600;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.info-box p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ============================================
+   PASSENGER CONTACT CONSENT CHECKBOX
+   ============================================ */
+
+.consent-wrapper {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 2px solid #3b82f6;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1);
+    transition: all 0.3s ease;
+}
+
+.consent-wrapper:hover {
+    border-color: #2563eb;
+    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.15);
+}
+
+.consent-wrapper.error {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    animation: consentShake 0.5s;
+}
+
+@keyframes consentShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.consent-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    gap: 15px;
+}
+
+.consent-label input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    margin-top: 3px;
+    cursor: pointer;
+    accent-color: #FF6600;
+}
+
+.consent-label .checkmark {
+    display: none;
+}
+
+.consent-text {
+    flex: 1;
+    color: #1e40af;
+}
+
+.consent-text strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1e3a8a;
+}
+
+.consent-info {
+    display: block;
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+    margin-top: 8px;
+    font-weight: normal;
+}
+
+.consent-wrapper.error .consent-text strong {
+    color: #dc2626;
+}
+
+.consent-wrapper:has(input:checked) {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+/* ============================================
+   CHECKBOX WRAPPER (Generic Terms)
+   ============================================ */
+
+.checkbox-wrapper {
+    margin: 25px 0;
+    padding: 22px;
+    background: #f7fafc;
+    border-radius: 10px;
+    border: 2px solid #e2e8f0;
+}
+
+.checkbox-wrapper .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.checkbox-wrapper .checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.checkmark {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #cbd5e1;
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    position: relative;
+    transition: all 0.2s ease;
+    background: #ffffff;
+}
+
+.checkbox-wrapper .checkbox-label input[type="checkbox"]:checked + .checkmark {
+    background: #FF6600;
+    border-color: #FF6600;
+}
+
+.checkbox-wrapper .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 8px;
+    width: 5px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-wrapper .checkbox-label a {
+    color: #FF6600;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.checkbox-wrapper .checkbox-label a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   REVIEW SECTION
+   ============================================ */
+
+.review-box {
+    background: #f7fafc;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.review-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.review-box::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 3px;
+}
+
+.review-box::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.review-section {
+    padding: 18px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+}
+
+.review-section h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #FF6600;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0f4f8;
+}
+
+.review-item {
+    display: flex;
+    padding: 6px 0;
+    font-size: 13px;
+    gap: 12px;
+}
+
+.review-label {
+    font-weight: 600;
+    color: #64748b;
+    min-width: 120px;
+    flex-shrink: 0;
+}
+
+.review-value {
+    color: #1a202c;
+    font-weight: 500;
+    flex: 1;
+    word-break: break-word;
+}
+
+/* ============================================
+   FORM ACTIONS - STICKY
+   ============================================ */
+
+.form-actions {
+    display: flex !important;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 20px 0 15px 0;
+    border-top: 2px solid #e2e8f0;
+    justify-content: space-between;
+    background: white;
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+}
+
+.btn {
+    padding: 13px 35px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 145px;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #FF6600 0%, #ff7a1a 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.35);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #ff7a1a 0%, #ff8833 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.5);
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+    border: 2px solid #e2e8f0;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* ============================================
+   ALERT MESSAGES
+   ============================================ */
+
+.alert-message {
+    margin: 0 0 20px 0;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: slideDown 0.3s ease;
+}
+
+.alert-message.success {
+    background: #d1fae5;
+    color: #065f46;
+    border: 2px solid #10b981;
+}
+
+.alert-message.error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 2px solid #ef4444;
+}
+
+.alert-message::before {
+    content: '✓';
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.alert-message.success::before {
+    background: #10b981;
+    color: white;
+}
+
+.alert-message.error::before {
+    content: '✕';
+    background: #ef4444;
+    color: white;
+}
+
+/* ============================================
+   SUCCESS PAGE
+   ============================================ */
+
+.success-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.success-icon {
+    margin: 0 auto 30px;
+    width: 60px;
+    height: 60px;
+}
+
+.success-container h2 {
+    font-size: 32px;
+    color: #1a202c;
+    margin-bottom: 20px;
+}
+
+.confirmation-text {
+    font-size: 18px;
+    color: #4a5568;
+    margin-bottom: 40px;
+}
+
+.success-container .info-box {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-left: 4px solid #FF6600;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.success-container .info-box p {
+    margin: 10px 0;
+    font-size: 15px;
+    color: #2d3748;
+}
+
+.app-id {
+    font-family: 'Courier New', monospace;
+    background: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    color: #FF6600;
+}
+
+.next-steps {
+    background: #fff7f0;
+    border-left: 4px solid #FF6600;
+    padding: 25px;
+    margin-bottom: 30px;
+    text-align: left;
+    border-radius: 8px;
+}
+
+.next-steps h3 {
+    color: #FF6600;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.next-steps p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.contact-info {
+    background: #f7fafc;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.contact-info p {
+    margin: 8px 0;
+    color: #4a5568;
+}
+
+.contact-info a {
+    color: #FF6600;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.action-buttons .btn {
+    padding: 14px 30px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.form-footer {
+    padding: 18px 50px;
+    background: #f7fafc;
+    text-align: center;
+    font-size: 13px;
+    color: #64748b;
+    border-top: 2px solid #e2e8f0;
+    flex-shrink: 0;
+}
+
+.form-footer a {
+    color: #FF6600;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   LOADING OVERLAY
+   ============================================ */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 25px;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+}
+
+.loading-overlay.show {
+    display: flex;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #FF6600;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-overlay p {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .jetstar-registration-wrapper {
+        padding: 10px;
+    }
+    
+    .jetstar-registration-container {
+        height: auto;
+        max-height: none;
+        min-height: 95vh;
+    }
+    
+    .jetstar-header {
+        padding: 15px 20px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .home-link {
+        align-self: flex-start;
+    }
+    
+    .header-spacer {
+        display: none;
+    }
+    
+    .jetstar-brand-logo {
+        max-height: 45px;
+    }
+    
+    .jetstar-logo-text {
+        font-size: 24px;
+    }
+    
+    .page-title {
+        font-size: 20px;
+    }
+    
+    .progress-tracker {
+        padding: 15px 15px;
+        gap: 20px;
+    }
+    
+    .step-circle {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+    
+    .progress-step span {
+        font-size: 10px;
+    }
+    
+    .form-content {
+        padding: 25px 20px;
+    }
+    
+    .step-title {
+        font-size: 22px;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .review-box {
+        grid-template-columns: 1fr;
+        max-height: none;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+        position: relative;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .consent-wrapper {
+        padding: 20px 16px;
+    }
+    
+    .consent-label {
+        gap: 12px;
+    }
+    
+    .consent-text strong {
+        font-size: 15px;
+    }
+    
+    .consent-info {
+        font-size: 12px;
+    }
+}
+
+@media print {
+    .progress-tracker,
+    .form-actions,
+    .form-footer,
+    .home-link {
+        display: none;
+    }
+    
+    .form-step {
+        display: block !important;
+    }
+}
